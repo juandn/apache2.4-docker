@@ -1,2 +1,7 @@
 run:
-	docker run -dit --name apache2.4-test -p 8080:81 -v ${PWD}/htdocs/:/usr/local/apache2/htdocs/ -v  ${PWD}/my-httpd.conf:/usr/local/apache2/conf/httpd.conf httpd:2.4
+	docker run --rm -d --name apache2.4-test -p 8080:80 -v ${PWD}/htdocs/:/usr/local/apache2/htdocs/ -v  ${PWD}/my-httpd.conf:/usr/local/apache2/conf/httpd.conf -v ${PWD}/logs/:/usr/local/apache2/logs/ httpd:2.4
+stop:
+	docker stop apache2.4-test 
+restart:
+	docker stop apache2.4-test
+	docker run --rm -d --name apache2.4-test -p 8080:80 -v ${PWD}/htdocs/:/usr/local/apache2/htdocs/ -v  ${PWD}/my-httpd.conf:/usr/local/apache2/conf/httpd.conf -v ${PWD}/logs/:/usr/local/apache2/logs/ httpd:2.4
